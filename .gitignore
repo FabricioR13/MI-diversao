@@ -1,0 +1,13 @@
+node_modules
+.next
+.env
+.env.local
+.dados
+next-env.d.ts
+*.tsbuildinfo
+
+# cópia local da demonstração (no repositório ela é o index.html)
+Demonstracao.html
+# arquivos antigos e prints usados só como referência
+_antigo
+WhatsApp Image*
