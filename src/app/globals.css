@@ -264,6 +264,51 @@ html.mi-locked body {
   gap: 12px;
 }
 
+/* Campos de data e hora: no iPhone eles ignoram a largura e saem da caixa
+   se a aparência nativa não for desligada. */
+.mi-app input.mi-input[type="date"],
+.mi-app input.mi-input[type="time"] {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  text-align: left;
+}
+
+.mi-app input.mi-input::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+/* No iPhone um campo de data vazio aparece em branco: mostramos um aviso por cima. */
+.mi-datefield {
+  position: relative;
+  display: block;
+}
+
+.mi-datefield-hint {
+  position: absolute;
+  left: 14px;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  font-size: 15px;
+  font-weight: 700;
+  color: #7f8bb0;
+}
+
+.mi-app .mi-input-empty:not(:focus) {
+  color: transparent;
+}
+
+.mi-datefield:focus-within .mi-datefield-hint {
+  display: none;
+}
+
 .mi-alert {
   padding: 10px 12px;
   border-radius: 12px;

@@ -1092,27 +1092,41 @@ export default function CatalogApp() {
                 <div className="mi-grid-2">
                   <label className="mi-field">
                     <span>Entrega ou retirada</span>
-                    <input
-                      ref={startInputRef}
-                      className="mi-input"
-                      type="date"
-                      min={data?.today}
-                      value={draft.start}
-                      onChange={(e) => changeStart(e.target.value)}
-                    />
+                    <span className="mi-datefield">
+                      <input
+                        ref={startInputRef}
+                        className={`mi-input${draft.start ? "" : " mi-input-empty"}`}
+                        type="date"
+                        min={data?.today}
+                        value={draft.start}
+                        onChange={(e) => changeStart(e.target.value)}
+                      />
+                      {draft.start ? null : (
+                        <span className="mi-datefield-hint" aria-hidden="true">
+                          Escolher
+                        </span>
+                      )}
+                    </span>
                   </label>
                   <label className="mi-field">
                     <span>Devolução</span>
-                    <input
-                      className="mi-input"
-                      type="date"
-                      min={draft.start || data?.today}
-                      value={draft.end}
-                      onChange={(e) => {
-                        setDateError("");
-                        setDraft((prev) => ({ ...prev, end: e.target.value }));
-                      }}
-                    />
+                    <span className="mi-datefield">
+                      <input
+                        className={`mi-input${draft.end ? "" : " mi-input-empty"}`}
+                        type="date"
+                        min={draft.start || data?.today}
+                        value={draft.end}
+                        onChange={(e) => {
+                          setDateError("");
+                          setDraft((prev) => ({ ...prev, end: e.target.value }));
+                        }}
+                      />
+                      {draft.end ? null : (
+                        <span className="mi-datefield-hint" aria-hidden="true">
+                          Escolher
+                        </span>
+                      )}
+                    </span>
                   </label>
                 </div>
                 <p className="mi-times-note">

@@ -14,7 +14,12 @@ export class UserError extends Error {
 }
 
 export function json(data: unknown, status = 200, headers: Record<string, string> = {}) {
-  return Response.json(data, { status, headers: { "Cache-Control": "no-store", ...headers } });
+  // new Response + JSON.stringify (e não Response.json): este código também roda dentro do
+  // navegador na demonstração, e celulares mais antigos (iOS 16 ou anterior) não têm Response.json.
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { "Content-Type": "application/json", "Cache-Control": "no-store", ...headers },
+  });
 }
 
 export function unauthorized() {

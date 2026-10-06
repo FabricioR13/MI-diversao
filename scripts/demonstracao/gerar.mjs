@@ -35,7 +35,8 @@ const result = await esbuild.build({
   format: "iife",
   jsx: "automatic",
   minify: true,
-  target: "es2020",
+  // navegadores de alguns anos atrás também precisam abrir a demonstração
+  target: "es2019",
   legalComments: "none",
   define: { "process.env.NODE_ENV": '"production"' },
   plugins: [aliases],
